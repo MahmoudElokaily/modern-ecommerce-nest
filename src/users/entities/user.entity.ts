@@ -12,7 +12,5 @@ export class UserEntity {
   @Column()
   password: string;
   @Column({type: 'enum', enum: Roles , array: true, default: Roles[Roles.User]})
-  roles: Roles[];
-
-
+  roles: Roles[] = [Roles.User];
 }

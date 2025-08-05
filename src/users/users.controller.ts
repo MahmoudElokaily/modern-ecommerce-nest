@@ -2,14 +2,22 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserSignupDto } from './dto/user-signup.dto';
+import { UserEntity } from './entities/user.entity';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Post('signup')
+  async signup(@Body() userSignup: UserSignupDto): Promise<{user: UserEntity}> {
+    return {user: await this.usersService.signup(userSignup)};
+  }
+
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+    // return this.usersService.create(createUserDto);
+    return 'Hi';
   }
 
   @Get()

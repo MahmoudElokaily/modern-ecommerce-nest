@@ -23,16 +23,45 @@ export class ProductsService {
     return this.productRepository.save(product);
   }
 
-  findAll() {
-    return `This action returns all products`;
+  async findAll(): Promise<ProductEntity[]>{
+    return this.productRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  async findOne(id: number): Promise<ProductEntity> {
+    const product = await this.productRepository.findOne({
+      where: {id:id},
+      relations: {
+        addedBy: true,
+        category: true,
+      },
+      select: {
+        addedBy: {
+          id: true,
+          name:true,
+          email:true
+        },
+        category: {
+          id:true,
+          title:true,
+          description: true
+        }
+      }
+    });
+    if (!product) {
+      throw new NotFoundException(`Product ${id} not found`);
+    }
+    return product;
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  async update(id: number, updateProductDto: Partial<UpdateProductDto> , currentUser: UserEntity): Promise<ProductEntity> {
+    const product = await this.findOne(id);
+    Object.assign(product, updateProductDto);
+    product.addedBy = currentUser;
+    if (updateProductDto.categoryId) {
+      const category = await this.categoriesService.findOne(+updateProductDto.categoryId);
+      product.category = category;
+    }
+    return await this.productRepository.save(product);
   }
 
   remove(id: number) {

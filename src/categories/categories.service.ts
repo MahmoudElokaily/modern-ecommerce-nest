@@ -17,11 +17,34 @@ export class CategoriesService {
   }
 
   async findAll(): Promise<CategoryEntity[]> {
-    return this.categoryRepository.find();
+    return this.categoryRepository.find({
+      relations: {addedBy: true},
+      select: {
+        addedBy: {
+          id: true,
+          name: true,
+          email: true,
+        }
+      }
+    });
   }
 
-  async findOne(id: number): Promise<CategoryEntity | null> {
-    return this.categoryRepository.findOneBy({id});
+  async findOne(id: number): Promise<CategoryEntity> {
+    const category = await this.categoryRepository.findOne({
+      where: {id: id},
+      relations: {addedBy: true},
+      select: {
+        addedBy: {
+          id: true,
+          name: true,
+          email: true,
+        }
+      }
+    });
+    if (!category) {
+      throw new NotFoundException("Category not found");
+    }
+    return category;
   }
 
   async update(id: number, fields:Partial<UpdateCategoryDto>): Promise<CategoryEntity> {

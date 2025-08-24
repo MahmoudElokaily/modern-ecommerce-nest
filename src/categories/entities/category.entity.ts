@@ -21,7 +21,7 @@ export class CategoryEntity {
   created_at: Timestamp;
   @UpdateDateColumn()
   updated_at: Timestamp;
-  @ManyToOne(() => UserEntity, (user) => user.categories , { eager: true })
+  @ManyToOne(() => UserEntity, (user) => user.categories)
   addedBy; UserEntity;
 
   @OneToMany(() => ProductEntity , (prod) => prod.category)

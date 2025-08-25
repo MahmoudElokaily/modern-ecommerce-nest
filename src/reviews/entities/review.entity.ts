@@ -9,7 +9,7 @@ import { ProductEntity } from '../../products/entities/product.entity';
 
 @Entity('reviews')
 export class ReviewEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
   @Column()
   ratings: number;

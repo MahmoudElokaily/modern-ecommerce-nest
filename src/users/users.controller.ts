@@ -5,11 +5,11 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { UserSignupDto } from './dto/user-signup.dto';
 import { UserEntity } from './entities/user.entity';
 import { UserSignInDto } from './dto/user-signin.dto';
-import { CurrentUserDecorator } from './utility/decorators/current-user.decorator';
-import { AuthenticationGuard } from './utility/guards/authentication.guard';
-import { AuthorizeRolesDecorator } from './utility/decorators/authorize-roles.decorator';
-import { Roles } from './utility/common/user-roles.enum';
-import { AuthorizeGuard } from './utility/guards/authorization.guard';
+import { CurrentUserDecorator } from '../utility/decorators/current-user.decorator';
+import { AuthenticationGuard } from '../utility/guards/authentication.guard';
+import { AuthorizeRolesDecorator } from '../utility/decorators/authorize-roles.decorator';
+import { Roles } from '../utility/common/user-roles.enum';
+import { AuthorizeGuard } from '../utility/guards/authorization.guard';
 
 @Controller('users')
 export class UsersController {

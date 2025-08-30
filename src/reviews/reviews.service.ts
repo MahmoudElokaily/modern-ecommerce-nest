@@ -17,7 +17,6 @@ export class ReviewsService {
     let review = await this.findOneByUserAndProduct(currentUser.id , createReviewDto.productId);
     if (!review) {
       review = this.reviewRepository.create(createReviewDto);
-      console.log(currentUser);
       review.user = currentUser;
       review.product = product;
     }

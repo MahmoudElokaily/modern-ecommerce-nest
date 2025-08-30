@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, forwardRef, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { UserEntity } from '../users/entities/user.entity';
@@ -18,7 +18,7 @@ export class OrdersService {
   constructor(
     @InjectRepository(OrderEntity) private readonly orderRepository: Repository<OrderEntity> ,
     @InjectRepository(OrdersProductsEntity) private readonly opRepository: Repository<OrdersProductsEntity> ,
-    private readonly productsService: ProductsService,
+    @Inject(forwardRef(()=> ProductsService)) private readonly productsService: ProductsService,
   ) {}
 
   async create(createOrderDto: CreateOrderDto , currentUer: UserEntity): Promise<OrderEntity> {
@@ -69,12 +69,18 @@ export class OrdersService {
         products: { product:true }
       }
     });
-    console.log(order);
     if (!order) {
       throw new NotFoundException(`Order ${id} not found`);
     }
     return order;
   }
+
+   async findOneByProductId(id: number) {
+    return this.opRepository.findOne({
+      relations: {product: true},
+      where: {product: {id}}
+    })
+   }
 
   async update(id: number, updateOrderStatusDto: UpdateOrderStatusDto , currentUser: UserEntity) {
     let order = await this.findOne(id);
@@ -113,8 +119,6 @@ export class OrdersService {
   }
 
   async cancelled(id: number , currentUser: UserEntity) {
-    console.log("test");
-    console.log(id);
     let order = await this.findOne(id);
     if (order.status === OrderStatus.CANCELLED) return order;
     order.status = OrderStatus.CANCELLED;

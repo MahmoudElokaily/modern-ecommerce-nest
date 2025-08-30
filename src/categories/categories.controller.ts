@@ -2,11 +2,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { CurrentUserDecorator } from '../users/utility/decorators/current-user.decorator';
+import { CurrentUserDecorator } from '../utility/decorators/current-user.decorator';
 import { UserEntity } from '../users/entities/user.entity';
-import { AuthenticationGuard } from '../users/utility/guards/authentication.guard';
-import { Roles } from '../users/utility/common/user-roles.enum';
-import { AuthorizeGuard } from '../users/utility/guards/authorization.guard';
+import { AuthenticationGuard } from '../utility/guards/authentication.guard';
+import { Roles } from '../utility/common/user-roles.enum';
+import { AuthorizeGuard } from '../utility/guards/authorization.guard';
 import { CategoryEntity } from './entities/category.entity';
 
 @Controller('categories')

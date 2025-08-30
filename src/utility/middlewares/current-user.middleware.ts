@@ -3,8 +3,8 @@ import { Request, Response, NextFunction } from 'express';
 import { isArray } from 'class-validator';
 import { verify , type Secret } from 'jsonwebtoken';
 import * as process from 'node:process';
-import { UsersService } from '../../users.service';
-import { UserEntity } from '../../entities/user.entity';
+import { UsersService } from '../../users/users.service';
+import { UserEntity } from '../../users/entities/user.entity';
 
 declare global {
   namespace Express {

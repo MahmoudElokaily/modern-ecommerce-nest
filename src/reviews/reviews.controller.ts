@@ -2,10 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { ReviewsService } from './reviews.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
-import { AuthorizeGuard } from '../users/utility/guards/authorization.guard';
-import { Roles } from '../users/utility/common/user-roles.enum';
-import { AuthenticationGuard } from '../users/utility/guards/authentication.guard';
-import { CurrentUserDecorator } from '../users/utility/decorators/current-user.decorator';
+import { AuthorizeGuard } from '../utility/guards/authorization.guard';
+import { Roles } from '../utility/common/user-roles.enum';
+import { AuthenticationGuard } from '../utility/guards/authentication.guard';
+import { CurrentUserDecorator } from '../utility/decorators/current-user.decorator';
 import { UserEntity } from '../users/entities/user.entity';
 import { ReviewEntity } from './entities/review.entity';
 

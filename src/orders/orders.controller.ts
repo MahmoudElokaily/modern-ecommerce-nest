@@ -2,12 +2,12 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Put } fro
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { AuthenticationGuard } from '../users/utility/guards/authentication.guard';
-import { CurrentUserDecorator } from '../users/utility/decorators/current-user.decorator';
+import { AuthenticationGuard } from '../utility/guards/authentication.guard';
+import { CurrentUserDecorator } from '../utility/decorators/current-user.decorator';
 import { UserEntity } from '../users/entities/user.entity';
 import { OrderEntity } from './entities/order.entity';
-import { AuthorizeGuard } from '../users/utility/guards/authorization.guard';
-import { Roles } from '../users/utility/common/user-roles.enum';
+import { AuthorizeGuard } from '../utility/guards/authorization.guard';
+import { Roles } from '../utility/common/user-roles.enum';
 import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
 import * as path from 'node:path';
 

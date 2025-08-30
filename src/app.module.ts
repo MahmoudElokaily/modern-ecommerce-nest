@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import dataSource, { dataSourceOptions } from '../db/data-source';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
-import { CurrentUserMiddleware } from './users/utility/middlewares/current-user.middleware';
+import { CurrentUserMiddleware } from './utility/middlewares/current-user.middleware';
 import { CategoriesModule } from './categories/categories.module';
 import { ProductsModule } from './products/products.module';
 import { ReviewsModule } from './reviews/reviews.module';

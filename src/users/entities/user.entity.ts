@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 
 } from 'typeorm';
-import { Roles } from '../utility/common/user-roles.enum';
+import { Roles } from '../../utility/common/user-roles.enum';
 import { CategoryEntity } from '../../categories/entities/category.entity';
 import { ProductEntity } from '../../products/entities/product.entity';
 import { ReviewEntity } from '../../reviews/entities/review.entity';
